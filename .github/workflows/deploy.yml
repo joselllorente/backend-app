@@ -1,0 +1,32 @@
+name: Deploy to Azure Container Apps
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Loguearse en Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Construir y publicar imagen en Azure Container Registry
+        run: |
+          az acr build --image myregistry.azurecr.io/backend-app:latest --registry myregistry --file Dockerfile .
+
+      - name: Desplegar en Azure Container Apps
+        run: |
+          az containerapp update --name myContainerApp --resource-group myResourceGroup \
+          --set-env-vars DB_USER=${{ secrets.DB_USER }} DB_HOST=${{ secrets.DB_HOST }} \
+          DB_NAME=${{ secrets.DB_NAME }} DB_PASSWORD=${{ secrets.DB_PASSWORD }} DB_PORT=${{ secrets.DB_PORT }}
+
+      - name: Cerrar sesión de Azure
+        run: az logout
+
