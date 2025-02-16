@@ -19,7 +19,7 @@ jobs:
 
       - name: Construir y publicar imagen en Azure Container Registry
         run: |
-          az acr build --image myregistry.azurecr.io/backend-app:latest --registry myregistry --file Dockerfile .
+          az acr build --image azureregistrycursoia.azurecr.io/backend-app:latest --registry azureregistrycursoia --file Dockerfile .
 
       - name: Desplegar en Azure Container Apps
         run: |
