@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-# Configuración de la conexión con MySQL1
+# Configuración de la conexión con MySQL2
 db_config = {
     "host": os.getenv("DB_HOST"),
     "user": os.getenv("DB_USER"),
