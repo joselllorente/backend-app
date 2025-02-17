@@ -18,9 +18,9 @@ jobs:
       - name: Loguearse en Azure
         uses: azure/login@v1
         with:
-          client-id: 87def746-593d-410c-a802-1d1c2b44ce60
-          tenant-id: b2332e92-7b9d-43de-b174-b0ac81726dcb
-          subscription-id: d18005d4-9782-47a1-84c5-82df99b90350
+          #client-id: 87def746-593d-410c-a802-1d1c2b44ce60
+          #tenant-id: b2332e92-7b9d-43de-b174-b0ac81726dcb
+          #subscription-id: d18005d4-9782-47a1-84c5-82df99b90350
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
       - name: Loguearse en Azure Container Registry (ACR)
